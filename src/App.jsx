@@ -1,6 +1,6 @@
-import './App.css'
 import Recipe from './Recipe';
 import { useEffect, useState } from 'react';
+import './App.css'
 
 function App() {
   
@@ -27,7 +27,8 @@ function App() {
 
   const getSearch = e => {
     e.preventDefault();
-    setQuery(search)
+    setQuery(search);
+    setSearch('');
   }
 
 
@@ -37,14 +38,17 @@ function App() {
           <input value={search} onChange={updateSearch} type='text' className='search-bar' />
           <button type='submit' className='search-button'>Search</button>
         </form>
-        {recipes.map((recipe) => (
-          <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-           />
-        ))}
+        <div className='recipes'>
+          {recipes.map((recipe) => (
+            <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+            />
+          ))}
+        </div>
       </div>
   )
 }
